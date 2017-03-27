@@ -1,3 +1,14 @@
+*.zip
+*.7z
+*.gz
+
+chainer
+handson
+result
+
+*.csv
+*.model
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
