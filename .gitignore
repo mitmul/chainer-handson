@@ -1,10 +1,14 @@
+mnist_result/*
+!mnist_result/train_plot.png
+!mnist_result/test_plot.png
+
 *.zip
 *.7z
 *.gz
 
 chainer
 handson
-*result
+result
 
 *.csv
 *.model
