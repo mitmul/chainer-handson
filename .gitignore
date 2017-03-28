@@ -1,6 +1,7 @@
 mnist_result/*
 !mnist_result/loss.png
 !mnist_result/accuracy.png
+!mnist_result/cg.png
 
 cifar10_result/*
 !cifar10_result/loss.png
