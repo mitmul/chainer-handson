@@ -1,6 +1,10 @@
 mnist_result/*
-!mnist_result/train_plot.png
-!mnist_result/test_plot.png
+!mnist_result/loss.png
+!mnist_result/accuracy.png
+
+cifar10_result/*
+!cifar10_result/loss.png
+!cifar10_result/accuracy.png
 
 *.zip
 *.7z
