@@ -3,9 +3,13 @@ mnist_result/*
 !mnist_result/accuracy.png
 !mnist_result/cg.png
 
-cifar10_result/*
-!cifar10_result/loss.png
-!cifar10_result/accuracy.png
+MyModel_cifar10_result/*
+!MyModel_cifar10_result/loss.png
+!MyModel_cifar10_result/accuracy.png
+
+DeepCNN_cifar10_result/*
+!DeepCNN_cifar10_result/loss.png
+!DeepCNN_cifar10_result/accuracy.png
 
 *.zip
 *.7z
