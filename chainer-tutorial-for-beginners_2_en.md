@@ -1,18 +1,17 @@
 # How to use Trainer
 
-## Prepare dataset
+## 1. Prepare a dataset
 
-## Prepare Iterator
+## 2. Create an Iterator
 
-## Prepare Model
+## 3. Define a model
 
-## Prepare Updater
+## 4. Create an Updater
 
-## Setup a Trainer
+## 5. Setup a Trainer
 
-## Add Extensions to Trainer
+## 6. Add Extensions to the Trainer
 
-## Start training!
+## 7. Start training!
 
-## Make a prediction using trained model
-
+## 8. Make a prediction using the trained model
