@@ -3,6 +3,12 @@ mnist_result/*
 !mnist_result/accuracy.png
 !mnist_result/cg.png
 
+illust2vec_ver200.model
+illust2vec_ver200.caffemodel
+animeface-character-dataset
+animeface-character-dataset.zip
+.ipynb_checkpoints
+
 MyModel_cifar10_result/*
 !MyModel_cifar10_result/loss.png
 !MyModel_cifar10_result/accuracy.png
@@ -14,10 +20,14 @@ DeepCNN_cifar10_result/*
 *.zip
 *.7z
 *.gz
+*.npz
+*.npy
+*.pkl
 
 chainer
 handson
 result
+wiki
 
 *.csv
 *.model
