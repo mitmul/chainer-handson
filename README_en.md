@@ -1,6 +1,6 @@
 # chainer-handson
 
-Chainer hands-on materials for beginners
+Chainer hands-on Jupyter notebooks for beginners:
 
 ## [1. How to write the training loop](https://github.com/mitmul/chainer-handson/blob/master/1-Write-the-training-loop_en.ipynb)
 
