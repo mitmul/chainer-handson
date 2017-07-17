@@ -1,3 +1,5 @@
+AnimeFace-result/
+
 mnist_result/*
 !mnist_result/loss.png
 !mnist_result/accuracy.png
