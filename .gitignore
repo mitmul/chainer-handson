@@ -1,3 +1,5 @@
+docker/pod.yml
+
 AnimeFace-result/
 
 mnist_result/*

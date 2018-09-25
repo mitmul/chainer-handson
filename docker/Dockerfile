@@ -1,14 +1,8 @@
 FROM nvidia/cuda:9.2-cudnn7-devel-ubuntu16.04
 
-RUN apt-get update -y && apt-get install -y software-properties-common
-
-RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
-    apt-get update -y && \
+RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
     ffmpeg \
-    libav-tools \
-    x264 \
-    x265 \
     curl \
     git \
     build-essential \
@@ -35,7 +29,6 @@ RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
     emacs \
     zsh \
     locales \
-
     python \
     python-dev \
     python-pip \
@@ -55,11 +48,18 @@ RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
     perftest && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
-    
 ARG GROUP_ID=51000
 RUN addgroup --gid ${GROUP_ID} fulltime
 
-ARG USER_ID=2072
+# Install OpenMPI with cuda & verbs
+RUN mkdir /root/lib && cd /root/lib && \
+    curl -L -O https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.1.tar.gz && \
+    tar zxvf openmpi-3.1.1.tar.gz && rm -rf openmpi-3.1.1.tar.gz && \
+    cd openmpi-3.1.1 && \
+    ./configure --with-cuda --with-verbs && \
+    make -j8 install
+
+ARG USER_ID=1000
 ARG USER_NAME=ubuntu
 RUN mkdir -p /home/${USER_NAME}
 RUN useradd -d /home/${USER_NAME} -g ${GROUP_ID} -u ${USER_ID} ${USER_NAME}
@@ -91,36 +91,25 @@ RUN CONDA=$(pyenv which conda) && \
     PIP=$(pyenv which pip) && \
     $PIP install -U pip && \
     $PIP install PyHamcrest && \
-    $CONDA install -y numpy scipy scikit-learn jupyter opencv matplotlib cython protobuf pandas
-
-# Install OpenMPI with cuda & verbs
-RUN mkdir $HOME/lib && cd $HOME/lib && \
-    curl -L -O https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.1.tar.gz && \
-    tar zxvf openmpi-3.1.1.tar.gz && rm -rf openmpi-3.1.1.tar.gz && \
-    cd openmpi-3.1.1 && \
-    ./configure --with-cuda --with-verbs
-
-USER root
-RUN cd $HOME/lib/openmpi-3.1.1 && make -j8 install
-USER ${USER_NAME}
+    $CONDA install -y numpy scipy scikit-learn jupyter matplotlib cython protobuf pandas h5py
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ENV LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib
 ENV CPATH=$CPATH:/usr/local/include
 RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> ~/.zshrc && \
     echo 'export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib' >> ~/.zshrc && \
-    echo 'export CPATH=$CPATH:/usr/local/include' >> ~/.zshrc 
+    echo 'export CPATH=$CPATH:/usr/local/include' >> ~/.zshrc
 
 RUN PIP=$(pyenv which pip) && \
     $PIP install mpi4py && \
     $PIP install chainer==5.0.0b4 && \
     $PIP install cupy-cuda92==5.0.0b4 && \
     $PIP install chainermn==1.3.0 && \
-    $PIP install chainercv==0.10.0
-
-RUN PIP=$(pyenv which pip) && \
+    $PIP install chainercv==0.10.0 && \
     $PIP install jupyterthemes && \
     JT=$(pyenv which jt) && \
-    $JT -t onedork -f dejavu -T -N && \
-    $PIP install xlrd
-
+    $JT -f dejavu -T -N && \
+    $PIP install xlrd && \
+    $PIP install imageio && \
+    $PIP install tqdm && \
+    $PIP install pyyaml
