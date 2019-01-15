@@ -1,4 +1,4 @@
-# CAUSION: This is not maintained anymore. Visit https://github.com/chainer-community/chainer-colab-notebook/
+# CAUTION: This is not maintained anymore. Visit https://github.com/chainer-community/chainer-colab-notebook/
 
 # Chainer Notebooks
 
