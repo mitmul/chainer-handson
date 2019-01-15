@@ -1,3 +1,5 @@
+# CAUSION: This is not maintained anymore. Visit https://github.com/chainer-community/chainer-colab-notebook/
+
 # Chainer Notebooks
 
 See here:
